@@ -1,7 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 
-const route = (response,path,code,type) =>{
+const route = (response,path,statusCode,type) =>{
     fs.readFile(path,(error,dataRes)=>{
         if(error){
             throw error;
@@ -11,7 +11,7 @@ const route = (response,path,code,type) =>{
                 "Content-Type" : type
             });
             response.write(dataRes);
-            response.edn();
+            response.end();
         }
     })
 }
