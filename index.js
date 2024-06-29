@@ -1,5 +1,7 @@
 const http = require("http");
 const fs = require("fs");
+const signup = require("./node-api/signup")
+
 
 const route = (response,path,statusCode,type) =>{
     fs.readFile(path,(error,dataRes)=>{
@@ -45,6 +47,12 @@ const server = http.createServer((request,response)=>{
     let code = 200;
     let type = "text/javascript";
     route(response,path,code,type);
+ }
+
+ /* node-api routing */
+
+ else if(request.url == "/api/signup"){
+    signup.demo(request,response)
  }
  else{
     let path = "html/not-found.html";
