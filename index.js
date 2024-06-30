@@ -1,6 +1,8 @@
 const http = require("http");
 const fs = require("fs");
-const signup = require("./node-api/signup")
+const signup = require("./node-api/signup");
+const { result } = require("./node-api/login");
+
 
 
 const route = (response,path,statusCode,type) =>{
@@ -53,6 +55,9 @@ const server = http.createServer((request,response)=>{
 
  else if(request.url == "/api/signup"){
     signup.demo(request,response)
+ }
+ else if(request.url == "/api/login"){
+    result(request,response);
  }
  else{
     let path = "html/not-found.html";

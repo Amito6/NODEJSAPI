@@ -1,10 +1,12 @@
+require("dotenv").config();
 const mongodb = require("mongodb").MongoClient;
-const url = "mongodb://127.0.0.1:27017";
+const url = process.env.MONGO_URI;
+console.log(url)
 
 /* establishing connection */
 const config = () =>{
     return new Promise((resolve,reject)=>{
-        mongodb.connect(url).then((conn)=>{
+        mongodb.connect(process.env.MONGO_URI).then((conn)=>{
             const db = conn.db("operations");
             const collection = db.collection("users");
             resolve(collection);
